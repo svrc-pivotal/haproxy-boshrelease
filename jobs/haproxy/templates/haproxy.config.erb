@@ -204,7 +204,7 @@ backend http-routers
     compression type <%= p("ha_proxy.compress_types") %>
     <% end %>
     <% p("ha_proxy.backend_servers").each_with_index do |ip, index| %>
-        server node<%= index %> <%= ip %>:<%= p("ha_proxy.backend_port") %> <% if_p("ha_proxy.resolvers") do %> resolvers default <% end %> check inter 1000
+        server node<%= index %> <%= ip %>:<%= p("ha_proxy.backend_port") %> <% if_p("ha_proxy.resolvers") do %> resolvers default <% end %> check inter 1000 <% if p("ha_proxy.backend_ssl_verify") %> ssl verify required ca-file /var/vcap/jobs/haproxy/config/backend-ca-certs.pem <% elsif p("ha_proxy.backend_ssl_noverify") %> ssl verify none <% end %> <% if_p("ha_proxy.backend_ssl_verifyhost") do | verify_hostname | %> verifyhost <%= verify_hostname %> <% end %>
     <% end %>
 
 <%# Routed Backends %>

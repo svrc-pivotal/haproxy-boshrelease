@@ -13,6 +13,7 @@ templates:
   monit_debugger:            bin/monit_debugger
   certs.ttar.erb:            config/certs.ttar
   ssl_redirect.map.erb:      config/ssl_redirect.map
+  backend-ca-certs.erb:      config/backend-ca-certs.pem
   helpers/ctl_setup.sh:      helpers/ctl_setup.sh
   helpers/ctl_utils.sh:      helpers/ctl_utils.sh
   properties.sh.erb:    data/properties.sh
@@ -33,6 +34,8 @@ properties:
   ha_proxy.ssl_pem:
     description: "SSL certificate (PEM file), or an array of SSL certificates (PEM files)"
     default: ~
+  ha_proxy.backend_ca_file:
+    description: "SSL CA certificate chain (PEM file) concatenated together for backend SSL http servers"
   ha_proxy.disable_http:
     description: "Disable port 80 traffic"
     default: false
@@ -94,6 +97,14 @@ properties:
   ha_proxy.backend_servers:
     description: "Array of the router IPs acting as the HTTP/TCP backends (should include servers all Availability Zones being used)"
     default: []
+  ha_proxy.backend_ssl_verify:
+    description: "Enable SSL verificatication for backend servers.  Requires `ha_proxy.backend_ca_file` key to be set."
+    default: false
+  ha_proxy.backend_ssl_noverify:
+    description: "Enable SSL for backend servers with no verification.  Ensure `ha_proxy.backend_ssl_verify` is set to false when using this."
+    default: false
+  ha_proxy.backend_ssl_verifyhost:
+    description: "Optional hostname to verify in the x509 certificate subject for SSL-enabled backend servers.  Ensure `ha_proxy.backend_ssl_verify` is set to true when using this."
   ha_proxy.backend_port:
     description: "Listening port for Router"
     default: 80
