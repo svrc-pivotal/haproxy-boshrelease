@@ -1,0 +1,37 @@
+---
+packages:
+- name: haproxy
+  version: 01b2ddd321d78c1e20c6dbd36bf65bc4737c5c97
+  fingerprint: 01b2ddd321d78c1e20c6dbd36bf65bc4737c5c97
+  sha1: 3ac34582d507a0e713c6760c85b0e3d0394ae0f1
+  dependencies:
+  - openssl
+- name: openssl
+  version: eb38297fe279773ef2959a45199b9e1fc4c43892
+  fingerprint: eb38297fe279773ef2959a45199b9e1fc4c43892
+  sha1: f45f42773f74f1f4daa3f5c9a3cf85d14c837618
+  dependencies:
+  - openssl-fips
+- name: openssl-fips
+  version: a2b87417128fb0fc7c4b0f2618455e896cf60f5f
+  fingerprint: a2b87417128fb0fc7c4b0f2618455e896cf60f5f
+  sha1: 6f3e4dfa53e7ecd2e73888d746b2d7bf0d545c3e
+  dependencies: []
+- name: ttar
+  version: 3d35c54bf484b59a22c9bf783ff62d08eb30353f
+  fingerprint: 3d35c54bf484b59a22c9bf783ff62d08eb30353f
+  sha1: 4d4b90f147ae3ecfe9e99e716029fe2a3be67130
+  dependencies: []
+jobs:
+- name: haproxy
+  version: a8feab51def4ca5cd2eb52e0bea292749af0324e
+  fingerprint: a8feab51def4ca5cd2eb52e0bea292749af0324e
+  sha1: db40491bc6fc7a07652a0bdf2da754a082b473e5
+license:
+  version: 1128a8ae7526393e7fbf22a18a92b4d0dfdd78c0
+  fingerprint: 1128a8ae7526393e7fbf22a18a92b4d0dfdd78c0
+  sha1: a5e9a0633b8fe451d9bcfb31a4f3d1dfc39b1a9e
+commit_hash: 3bc97554
+uncommitted_changes: true
+name: haproxy
+version: 8.0.10.ssl

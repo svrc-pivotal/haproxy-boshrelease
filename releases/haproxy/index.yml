@@ -10,4 +10,6 @@ builds:
     version: 8.0.9
   20941ee7-2a87-42c3-9df7-1ae233c1d002:
     version: 8.0.10
+  c83befe6-4de7-4062-a8a9-f55744443ebd:
+    version: 8.0.10.ssl
 format-version: '2'
