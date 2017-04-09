@@ -12,4 +12,8 @@ builds:
     version: 8.0.10
   c83befe6-4de7-4062-a8a9-f55744443ebd:
     version: 8.0.10.ssl
+  e6661160-264c-4c74-a1f6-7fd4bb3855dd:
+    version: 8.0.11
+  41bcfed2-7f91-4413-b40a-312306372e70:
+    version: 8.0.12
 format-version: '2'
