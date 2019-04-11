@@ -19,6 +19,15 @@ provides:
 properties:
   keepalived.vip:
     description: Virtual IP V4 address that will be given to master 
+  keepalived.vips:
+    description: Multiple VIPs required for master (in multi-nic scenarios), must map IP to device.
+    example: 
+      vips: 
+      - vip: 10.0.0.5
+        device: eth3
+      - vip: 10.0.0.6
+        device: eth4
+   
   keepalived.healthcheck_name:
     description: label displayed for the health check. Will appear in keepalive traces e.g. "Keepalived_vrrp[4558] VRRP_Script(check_haproxy) failed"
     default: check_haproxy

@@ -84,7 +84,9 @@ case $1 in
         echo "Could not autodetect interface to use for <%= p("keepalived.vip") %>. Cannot continue."
         exit 1
     fi
-    if grep "interface auto" ${CONF_DIR}/keepalived.config.template > /dev/null; then
+    if grep "Multi-NIC" ${CONF_DIR}/keepalived.config.template > /dev/null; then
+        echo "Skipping interface assignment due to multi-NIC"
+    elif grep "interface auto" ${CONF_DIR}/keepalived.config.template > /dev/null; then
         sed "s/interface auto/interface ${interface}/" ${CONF_DIR}/keepalived.config.template > ${CONF_DIR}/keepalived.config
     fi
     <% else -%>
