@@ -35,7 +35,8 @@ vrrp_instance <%= spec.name+'_'+p('keepalived.healthcheck_name'+"_"+vip_device_p
         } 
 } 
 <%- end 
- else -%>
+end
+if_p("vips") != true -%>
 vrrp_instance <%= spec.name+'_'+p('keepalived.healthcheck_name') %> {
 	<% if spec.bootstrap %>
 	state MASTER
