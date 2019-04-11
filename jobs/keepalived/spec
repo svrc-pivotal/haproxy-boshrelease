@@ -18,9 +18,11 @@ provides:
 
 properties:
   keepalived.vip:
-    description: Virtual IP V4 address that will be given to master 
+    description: Virtual IP V4 address that will be given to master (single-nic) 
+
   keepalived.vips:
     description: Multiple VIPs required for master (in multi-nic scenarios), must map IP to device.
+    default: []
     example: 
       vips: 
       - vip: 10.0.0.5
