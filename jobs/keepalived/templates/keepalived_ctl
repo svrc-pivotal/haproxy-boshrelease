@@ -84,7 +84,6 @@ case $1 in
     if [[ $? != 0 || -z ${interface} ]]; then
         echo "Could not autodetect interface to use for <%= p("keepalived.vip") %>. Cannot continue."
         exit 1
-    fi
     elif grep "interface auto" ${CONF_DIR}/keepalived.config.template > /dev/null; then
         sed "s/interface auto/interface ${interface}/" ${CONF_DIR}/keepalived.config.template > ${CONF_DIR}/keepalived.config
     fi
@@ -96,7 +95,6 @@ case $1 in
     if [[ $? != 0 || -z ${interface} ]]; then
         echo "Could not autodetect interface to use for <%= vip_array.first %>. Cannot continue."
         exit 1
-    fi
     elif grep "interface <%= vip_array.first %>" ${CONF_DIR}/keepalived.config.template > /dev/null; then
         sed -i "s/interface <%= vip_array.first %>/interface ${interface}/" ${CONF_DIR}/keepalived.config.template 
     fi
