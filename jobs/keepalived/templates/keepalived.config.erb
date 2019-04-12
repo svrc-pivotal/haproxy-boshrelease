@@ -12,7 +12,7 @@ vrrp_script <%= p('keepalived.healthcheck_name') %> {
 # The priority specifies the order in which the assigned interface to take over in a failover
 <%- p("keepalived.vips").each do |vip_device_pair| -%>
 # Multi-NIC VIP setup
-vrrp_instance <%= spec.name+'_'+p('keepalived.healthcheck_name'+"_"+vip_device_pair["device"]) %> {
+vrrp_instance <%= spec.name+'_'+p('keepalived.healthcheck_name')+"_"+vip_device_pair["device"] %> {
         <% if spec.bootstrap %>
         state MASTER
         priority 101
