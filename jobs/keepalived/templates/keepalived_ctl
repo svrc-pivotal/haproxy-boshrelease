@@ -88,9 +88,23 @@ case $1 in
     elif grep "interface auto" ${CONF_DIR}/keepalived.config.template > /dev/null; then
         sed "s/interface auto/interface ${interface}/" ${CONF_DIR}/keepalived.config.template > ${CONF_DIR}/keepalived.config
     fi
-    <% else -%>
-    cp ${CONF_DIR}/keepalived.config.template ${CONF_DIR}/keepalived.config
     <% end -%>
+    <% else 
+      p("keepalived.vips").each do | vip |
+     -%>
+    interface=$(interface_for_ip <%= vip %>)
+    if [[ $? != 0 || -z ${interface} ]]; then
+        echo "Could not autodetect interface to use for <%= vip %>. Cannot continue."
+        exit 1
+    fi
+    elif grep "interface <%= vip %>" ${CONF_DIR}/keepalived.config.template > /dev/null; then
+        sed -i "s/interface <%= vip %>/interface ${interface}/" ${CONF_DIR}/keepalived.config.template 
+    fi
+     <%
+      end
+    -%>
+    
+    cp ${CONF_DIR}/keepalived.config.template ${CONF_DIR}/keepalived.config
     <% end -%>
 
     $SBIN_DIR/keepalived -l -D -n \
