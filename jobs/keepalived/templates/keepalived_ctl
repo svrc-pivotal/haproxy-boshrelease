@@ -90,15 +90,15 @@ case $1 in
     fi
     <% end -%>
     <% else 
-      p("keepalived.vips").each do | vip |
+      p("keepalived.vips").each do | vip_array |
      -%>
-    interface=$(interface_for_ip <%= vip %>)
+    interface=$(interface_for_ip <%= vip_array.first %>)
     if [[ $? != 0 || -z ${interface} ]]; then
-        echo "Could not autodetect interface to use for <%= vip %>. Cannot continue."
+        echo "Could not autodetect interface to use for <%= vip_array.first %>. Cannot continue."
         exit 1
     fi
-    elif grep "interface <%= vip %>" ${CONF_DIR}/keepalived.config.template > /dev/null; then
-        sed -i "s/interface <%= vip %>/interface ${interface}/" ${CONF_DIR}/keepalived.config.template 
+    elif grep "interface <%= vip_array.first %>" ${CONF_DIR}/keepalived.config.template > /dev/null; then
+        sed -i "s/interface <%= vip_array.first %>/interface ${interface}/" ${CONF_DIR}/keepalived.config.template 
     fi
      <%
       end

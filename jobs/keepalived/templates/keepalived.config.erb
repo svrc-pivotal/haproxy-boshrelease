@@ -10,7 +10,7 @@ vrrp_script <%= p('keepalived.healthcheck_name') %> {
 }
 # Virtual interface
 # The priority specifies the order in which the assigned interface to take over in a failover
-<%- p("keepalived.vips").each_with_index do |vip, index| -%>
+<%- p("keepalived.vips").each_with_index do |vip_array, index| -%>
 # Multi-NIC VIP setup
 vrrp_instance <%= spec.name+'_'+p('keepalived.healthcheck_name')+"_"+ index %> {
         <% if spec.bootstrap %>
@@ -23,11 +23,13 @@ vrrp_instance <%= spec.name+'_'+p('keepalived.healthcheck_name')+"_"+ index %> {
         <% if p('keepalived.dont_track_primary') %>
         dont_track_primary
         <% end %>
-        interface <%= vip %>
-        virtual_router_id <%= p('keepalived.virtual_router_id') %>
+        interface <%= vip_array.first %>
+        virtual_router_id <%= index + 1 %>
         # The virtual ip address shared between the two loadbalancers
         virtual_ipaddress {
-                <%= vip %>
+                <% vip_array.each | vip | -%>
+               <%= vip %>
+                <% end -%>
         }
         track_script {
                 <%= p('keepalived.healthcheck_name') %>
